@@ -69,6 +69,6 @@ add_action('wp_head', 'theme_assets');
 
 // Import modules
 include_once get_template_directory() . '/components/dark-mode-toggle/dark-toggle.php';
-include_once get_template_directory() . '/components/Menu/desktop-menu.php';
-include_once get_template_directory() . '/components/Menu/mobile-menu.php';
+include_once get_template_directory() . '/components/menu/desktop-menu.php';
+include_once get_template_directory() . '/components/menu/mobile-menu.php';
 
