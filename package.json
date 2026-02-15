@@ -1,0 +1,29 @@
+{
+  "name": "wp-start-2026",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "build": "vite build",
+    "dev": "concurrently \"npx tailwindcss -i ./assets/src/tailwind/input.css -o ./assets/src/tailwind/output.css --watch \" \"vite\"",
+    "sprite": "node sprite-build.js"
+  },
+  "keywords": [
+    "tailwindcss",
+    "vite",
+    "sprite-build"
+  ],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "devDependencies": {
+    "@tailwindcss/typography": "^0.5.19",
+    "autoprefixer": "^10.4.24",
+    "concurrently": "^9.2.1",
+    "eslint": "^10.0.0",
+    "postcss": "^8.5.6",
+    "sass": "^1.97.3",
+    "tailwindcss": "^3.4.19",
+    "vite": "^7.3.1",
+    "vite-plugin-live-reload": "^3.0.5"
+  }
+}
