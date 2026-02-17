@@ -1,0 +1,23 @@
+{
+  "assets/src/fonts/WOFF2/MyriadPro-Bold.woff2": {
+    "file": "assets/MyriadPro-Bold-DcnVMev_.woff2",
+    "src": "assets/src/fonts/WOFF2/MyriadPro-Bold.woff2"
+  },
+  "assets/src/fonts/WOFF2/MyriadPro-Regular.woff2": {
+    "file": "assets/MyriadPro-Regular-BgFCAXbA.woff2",
+    "src": "assets/src/fonts/WOFF2/MyriadPro-Regular.woff2"
+  },
+  "assets/src/js/main.js": {
+    "file": "assets/main-Cxw9oz13.js",
+    "name": "main",
+    "src": "assets/src/js/main.js",
+    "isEntry": true,
+    "css": [
+      "assets/main-I7KfZil4.css"
+    ],
+    "assets": [
+      "assets/MyriadPro-Bold-DcnVMev_.woff2",
+      "assets/MyriadPro-Regular-BgFCAXbA.woff2"
+    ]
+  }
+}
