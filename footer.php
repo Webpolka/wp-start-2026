@@ -6,7 +6,7 @@
  */
 
 ?>
-<footer id="colophon" class="bg-blue-600 text-white py-5">
+<footer id="colophon" class="bg-blue-600 text-white py-7">
     <div class="container">
         <div class="flex items-center justify-between">
             <div>&copy; <?php echo date('Y'); ?> <?php bloginfo('name'); ?></div>

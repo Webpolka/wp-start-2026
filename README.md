@@ -1,7 +1,7 @@
 
-# WP Starter Theme (Tailwind + Sass + Hot Reload) 2026
+# WP Starter Theme (Tailwind 4 + Sass + Hot Reload) 2026
 
-Стартовая тема для WordPress с Tailwind CSS 3, Sass, Vite и поддержкой Hot Reload для PHP и JS.
+Стартовая тема для WordPress с Tailwind 4, CSS 3, Sass, Vite и поддержкой Hot Reload для PHP и JS.
 Идеально подходит для разработки своих тем быстро и с современным стеком.
 
 ## Структура проекта
@@ -9,52 +9,84 @@
 ```
 root/
 ├── dev-scripts/
-│   ├── font-builder.js           # конвертация шрифтов из ttf и otf в woff2
-│   ├── pot-builder.js            # генерация .pot .po .mo для переводов (парсит все файлы и собирает все фразы по проекту) 
-│   ├── README-POT.md             # инструкция по настройке для xampp и windows 10 ( необходим WP-CLI глобально !!! )
-│   ├── svg-sprite-builder.js     # генерация спратов svg
-│   └── start-dev.js              # автостарт локалхоста если локальный сервер запущен 
+│   ├── font-builder.js            # конвертация шрифтов из ttf и otf в woff2
+│   ├── pot-builder.js             # генерация .pot .po .mo для переводов (парсит все файлы и собирает все фразы по проекту) 
+│   ├── README-POT.md              # инструкция по настройке для xampp и windows 10 ( необходим WP-CLI глобально !!! )
+│   ├── svg-sprite-builder.js      # генерация спратов svg
+│   └── start-dev.js               # автостарт локалхоста, если локальный сервер запущен 
 │
 ├── assets/
+│   ├── dist/
+│   │    ├── .vite/    
+│   │    │    └── manifest.json    # файль с путями к чанкам билда (генерируется vite)
+│   │    └── assets/               # чанки билда
+│   │
 │   └── src/
+│       ├── fonts/                 # шрифты
+│       │   ├── WOFF2              # сюда попадают сконвертированные шрифты
+│       │   ├── шрифт-1.ttf        # шрифт для конвертации .ttf
+│       │   ├── шрифт-2.otf        # шрифт для конвертации .otf
+│       │   └── ...
+│       │    
 │       ├── icons/
 │       │   ├── collection/        # исходные SVG для спрайта
 │       │   └── sprite/            # сгенерированный SVG спрайт и html документ для визуализации спрайтов по ID
-│       ├── JS/
+│       │   
+│       ├── images/                # изображения
+│       │   
+│       ├── js/
 │       │   └── main.js            # главный JS-файл проекта (входная точка)
-│       ├── CSS/
-│       │   └── fonts.scss         # подключение шрифтов (генерируеться при команде npm run fonts) 
-│       │   └── main.scss          # главный SCSS, подключает Tailwind и кастомные стили 
-│       └── tailwind/
-│           ├── input.css          # исходный Tailwind
-│           └── output.css         # сгенерированный Tailwind (не редактируем)
+│       ├── scss/
+│       │   ├── basic.scss         # какието стиди для основных или кастомных классов 
+│       │   ├── fonts.scss         # подключение шрифтов (генерируеться при команде npm run fonts)
+│       │   ├── woocommerce.scss   # какие-то стили для woocommerce
+│       │   └── main.scss          # главный SCSS, собирает в себе остальные scss 
+│       │ 
+│       └── tailwind.css           # исходный Tailwind
+│          
+│          
 │
-├── components/
-│   ├── dark-mode-toggle/
+├── components/                    # кастомные компоненты
+│   ├── dark-mode-toggle/          # переключатель темы (темная/светлая)
 │   │   ├── darkmode-toggle.js
 │   │   └── darkmode-toggle.php
-│   └── menu/
+│   └── menu/                      # менюшка
 │       ├── desktop-menu.js
 │       ├── desktop-menu.php
 │       ├── mobile-menu.js
 │       └── mobile-menu.php
 │
+├── inc/                           # инклуды
+│   └── template-tags.php          
+│
+├── languages/                     # файлы для перевод (мультиязычность)
+│   ├── en_US.po                   
+│   ├── en_US.mo
+│   ├── ru_RU.po                   
+│   ├── ru_RU.mo
+│   └── wp_start_2026.pot          # основной шаблон .pot
+│
 ├── node_modules/
-│   └── (устанавливаемые пакеты npm)
+│   └── ... (устанавливаемые пакеты npm)
 │
-├── templateparts/
-│   └── (пока пусто)
+├── template-parts/
+│   └── ... (шаблоны контента для страниц)
 │
-├── README.md
-├── package.json
-├── functions.php
+├── utils/
+│   └── ... (разные утилиты для проекта)
+│
+├── dev.config.js        # дев конфиг ( ЗДЕСЬ НУЖНО УКАЗАТЬ ПУТЬ К ПРОЕКТУ НА LOCALHOST !!! )
+├── .gitignore           # файл исключений для гит-хаб
+├── jsconfig.json        # нужен для VS-Code, для корректной обработки путей при дополнении
+├── README.md            # полезный файл с информацией
+├── package.json         # пакет зависимостей
+├── functions.php        # основной исполнительный файл wordpress
 ├── index.php
 ├── header.php
 ├── footer.php
 ├── ...
-├── styles.scss
-├── tailwind.config.js
-└── vite.config.js
+├── styles.scss          # без стилей (нужен для админки)
+└── vite.config.js       # оосновной конфиг vite 
 
 ```
 
@@ -103,14 +135,6 @@ npm run build
 --- 
 
 
-## tailwind.config.js
-
-    Определяет, где искать классы Tailwind (content). 
-    Настройка тёмной темы (darkMode: 'class').
-    Контейнеры, брейкпоинты, кастомные цвета и шрифты.
-    Минимизирует CSS, оставляя только нужные классы.
----
-
 ## vite.config.js
 
     Настройка dev сервера с Hot Reload для JS, Sass и PHP.
@@ -138,10 +162,10 @@ import / export
 стрелочные функции, деструктуризация, шаблонные строки и др.
 ---
 
-# Пишите JS в main.js или создавайте свои компоненты в components/.
-# Добавляйте SVG иконки в assets/src/icons/collection, затем генерируйте спрайт через npm run sprite.
+Пишите JS в main.js или создавайте свои компоненты в components/.
+Добавляйте SVG иконки в assets/src/icons/collection, затем генерируйте спрайт через npm run sprite.
 
-## === SVG SPRITE BUILDER ============================================================================
+## === SVG SPRITE BUILDER ============================================
 
 Этот скрипт автоматически собирает все SVG-иконки из папки `icons/collection` в **один спрайт** и создаёт примерную HTML-страницу для просмотра.
 
@@ -218,7 +242,7 @@ include_once get_template_directory() . '/utils/svg.php';
 
 
 
-## ===  FONTS BUILDER ===================================================================================
+## ===  FONTS BUILDER ============================================
 
 Этот скрипт позволяет автоматически конвертировать шрифты и генерировать SCSS-файл для подключения шрифтов в проекте.  
 Он работает **без Gulp**, только через Node и npm.
@@ -256,3 +280,24 @@ include_once get_template_directory() . '/utils/svg.php';
 
 ```bash
 npm run fonts
+```
+
+## ===  POTS BUILDER ============================================
+
+Для того чтобы данный скрипт отработал у вас должен быть глобально установлен WP-CLI !!! 
+
+## Подробнее -> .dev-scripts/README-POTS.md
+
+В терминале:
+
+```bash
+npm run pot
+```
+
+POT → languages/wp_start_2026.pot
+
+PO → languages/ru_RU.po и languages/en_US.po
+
+MO → languages/ru_RU.mo и languages/en_US.mo
+
+создает корректные шаблоны файлов готовые для взаимодействия с плагинами для переводов на разные языки (RU/EN).

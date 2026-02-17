@@ -1,5 +1,6 @@
 // SASS
 import '../scss/main.scss';
+import '../tailwind.css';
 
 // JS
 import { initDarkMode } from '@/components/dark-mode/dark-mode';
