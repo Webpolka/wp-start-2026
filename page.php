@@ -15,7 +15,7 @@
 get_header();
 ?>
 <!-- Main Content -->
-<main id="primary" class="site-main flex-1 p-4">
+<main id="primary" class="site-main flex-1">
     <div class="container">
         <?php
         while (have_posts()):

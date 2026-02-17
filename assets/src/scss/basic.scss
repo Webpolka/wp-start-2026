@@ -1,7 +1,11 @@
 
 /*======================================================================================
-  Custom styles for some components
+  Basic styles for the main content area and tooltip adjustments.
 ======================================================================================*/
+.site-main{
+    padding-block: 20px;
+}
+
 .flip-left{
     left:auto !important;
     right:100% !important;
@@ -10,3 +14,5 @@
     top:auto !important;
     bottom:100% !important;
 }
+
+
