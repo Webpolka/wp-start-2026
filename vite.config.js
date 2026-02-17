@@ -1,16 +1,37 @@
 import { defineConfig } from 'vite'
 import liveReload from 'vite-plugin-live-reload'
+import { fileURLToPath } from 'url'
+import path from 'path'
+import fs from 'fs'
+
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
+
+const config = JSON.parse(
+  fs.readFileSync('./dev.config.json', 'utf-8')
+)
 
 export default defineConfig({
+  resolve: {
+    alias: {
+      // для абсолютных импортов от корня темы
+      "@": path.resolve(__dirname, './'),      
+      '@assets': path.resolve(__dirname, './assets/src'),      
+      '@components': path.resolve(__dirname, './components'),      
+      '@icons': path.resolve(__dirname, './assets/src/icons'),
+      '@images': path.resolve(__dirname, './assets/src/images')
+    }
+  },
 
   // Плагины
-  plugins: [
+  plugins: [    
     // авто-перезагрузка браузера при изменении PHP файлов
     liveReload(['**/*.php'])
   ],
 
   //  DEV сервер (когда npx vite)
   server: {
+    open: config.siteUrl,  // открывать браузер на этом адресе
     host: 'localhost',     // откуда грузится vite
     port: 5173,            // порт dev сервера
     strictPort: true,      // не прыгать на другой порт

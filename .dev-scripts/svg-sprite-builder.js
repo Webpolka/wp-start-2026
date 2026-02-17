@@ -7,9 +7,9 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 // Папка с SVG
-const inputDir = path.resolve(__dirname, 'assets/src/icons/collection'); 
+const inputDir = path.resolve(__dirname, '../assets/src/icons/collection'); 
 // Куда сохранить спрайт
-const outputDir = path.resolve(__dirname, 'assets/src/icons/sprite'); 
+const outputDir = path.resolve(__dirname, '../assets/src/icons/sprite'); 
 
 const config = {
   mode: {

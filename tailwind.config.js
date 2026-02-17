@@ -1,10 +1,10 @@
 /** @type {import('tailwindcss').Config} */
-export default {
+module.exports = {
   darkMode: 'class', // поддержка тёмной темы через класс .dark
   content: [
     './*.php',
-    './template-parts/**/*.php',    
-    "./components/**/*.{php,html,js}"
+    './template-parts/**/*.php',
+    './components/**/*.{php,html,js}',
   ],
   theme: {
     container: {
@@ -30,7 +30,6 @@ export default {
         black: '#000',
       },
       fontFamily: {
-        // кастомные шрифты для body и heading
         body: ['Roboto', 'sans-serif'],
         heading: ['Montserrat', 'sans-serif'],
       },
@@ -42,5 +41,7 @@ export default {
       },
     },
   },
-  plugins: [],
+  plugins: [
+    require('@tailwindcss/typography'),
+  ],
 }

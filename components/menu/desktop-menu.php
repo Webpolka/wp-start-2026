@@ -80,7 +80,7 @@ class Tailwind_Desktop_Navwalker extends Walker_Nav_Menu
         }
 
         if ($depth === 0) {
-            $link_classes = 'block text-gray-700 hover:text-black transition-colors duration-200';
+            $link_classes = 'block text-white hover:text-white/80 transition-colors duration-200';
         } else {
             $link_classes = 'block text-black hover:bg-gray-100 px-4 py-2 rounded transition-colors duration-150 whitespace-nowrap';
         }
