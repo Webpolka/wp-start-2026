@@ -8,6 +8,12 @@
 
 ```
 root/
+├── dev-scripts/
+│   ├── font-builder.js           # конвертация шрифтов из ttf и otf в woff2
+│   ├── pot-builder.js            # генерация .pot .po .mo для переводов (парсит все файлы и собирает все фразы по проекту) 
+│   ├── svg-sprite-builder.js     # генерация спратов svg
+│   └── start-dev.js              # автостарт локалхоста если локальный сервер запущен 
+│
 ├── assets/
 │   └── src/
 │       ├── icons/
@@ -44,10 +50,11 @@ root/
 ├── index.php
 ├── header.php
 ├── footer.php
+├── ...
 ├── styles.scss
 ├── tailwind.config.js
-├── vite.config.js
-└── sprite-rebuild.js
+└── vite.config.js
+
 ```
 
 
