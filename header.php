@@ -61,7 +61,7 @@
 
                     <!-- Burger Button (Mobile) -->
                     <button id="burgerBtn" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu"
-                        class="md:hidden p-2 text-white">
+                        class="md:hidden p-2 text-white cursor-pointer">
                         <?php svg_icon('burger', 'w-6 h-6 fill-current'); ?>
                     </button>
                 </div>
@@ -80,7 +80,9 @@
                 <span class="font-bold text-xl">Menu</span>
                 <div class="flex items-center gap-2">
                     <?php wp_start_dark_mode_toggle(); ?>
-                    <button id="closeMenu" aria-label="Close menu" class="text-2xl leading-none">✕</button>
+                    <button id="closeMenu" aria-label="Close menu" class="text-2xl leading-none cursor-pointer">
+                        <?php svg_icon('close', 'w-4 h-4 fill-current'); ?>
+                    </button>
                 </div>
             </div>
 

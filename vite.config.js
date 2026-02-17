@@ -1,5 +1,6 @@
 import { defineConfig } from 'vite'
 import liveReload from 'vite-plugin-live-reload'
+import tailwindcss from '@tailwindcss/vite'
 import { fileURLToPath } from 'url'
 import path from 'path'
 import fs from 'fs'
@@ -15,16 +16,17 @@ export default defineConfig({
   resolve: {
     alias: {
       // для абсолютных импортов от корня темы
-      "@": path.resolve(__dirname, './'),      
-      '@assets': path.resolve(__dirname, './assets/src'),      
-      '@components': path.resolve(__dirname, './components'),      
+      "@": path.resolve(__dirname, './'),
+      '@assets': path.resolve(__dirname, './assets/src'),
+      '@components': path.resolve(__dirname, './components'),
       '@icons': path.resolve(__dirname, './assets/src/icons'),
       '@images': path.resolve(__dirname, './assets/src/images')
     }
   },
 
   // Плагины
-  plugins: [    
+  plugins: [
+    tailwindcss(),
     // авто-перезагрузка браузера при изменении PHP файлов
     liveReload(['**/*.php'])
   ],
