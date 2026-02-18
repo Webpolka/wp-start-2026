@@ -8,12 +8,12 @@
     "src": "assets/src/fonts/WOFF2/MyriadPro-Regular.woff2"
   },
   "assets/src/js/main.js": {
-    "file": "assets/main-Cxw9oz13.js",
+    "file": "assets/main-BM_oxs0q.js",
     "name": "main",
     "src": "assets/src/js/main.js",
     "isEntry": true,
     "css": [
-      "assets/main-I7KfZil4.css"
+      "assets/main-tTMMm-CT.css"
     ],
     "assets": [
       "assets/MyriadPro-Bold-DcnVMev_.woff2",

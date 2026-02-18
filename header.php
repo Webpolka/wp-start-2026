@@ -15,7 +15,9 @@
     <meta charset="<?php bloginfo('charset'); ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="profile" href="https://gmpg.org/xfn/11">
+
     <?php wp_head(); ?>
+
 </head>
 
 <body <?php body_class('bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100'); ?>>
@@ -38,14 +40,15 @@
                     <div class="flex flex-col gap-1">
                         <?php if (function_exists('the_custom_logo'))
                             the_custom_logo(); ?>
-                        <h1 class="text-2xl md:text-3xl font-bold">
+                        <h1 class="site-title text-2xl md:text-3xl font-bold">
                             <a href="<?php echo home_url(); ?>" class="hover:opacity-80">
                                 <?php bloginfo('name'); ?>
                             </a>
                         </h1>
-                        <p class="text-sm md:text-base opacity-80">
+                        <p class="site-description text-sm md:text-base opacity-80">
                             <?php bloginfo('description'); ?>
                         </p>
+
                     </div>
 
 

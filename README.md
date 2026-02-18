@@ -1,16 +1,21 @@
-
+## ===============================================================
 # WP Starter Theme (Tailwind 4 + Sass + Hot Reload) 2026
+## ===============================================================
 
 Стартовая тема для WordPress с Tailwind 4, CSS 3, Sass, Vite и поддержкой Hot Reload для PHP и JS.
 Идеально подходит для разработки своих тем быстро и с современным стеком.
+
+Теперь ПУТЬ указываем в файле .env !!!
 
 ## Структура проекта
 
 ```
 root/
-├── dev-scripts/
+├── .builder-scripts/
 │   ├── font-builder.js            # конвертация шрифтов из ttf и otf в woff2
 │   ├── pot-builder.js             # генерация .pot .po .mo для переводов (парсит все файлы и собирает все фразы по проекту) 
+│   ├── images-builder.js          # конверитация png, jpeg в webp, avif
+│   ├── favicons-builder.js        # генерация продвинутых фавикон 
 │   ├── README-POT.md              # инструкция по настройке для xampp и windows 10 ( необходим WP-CLI глобально !!! )
 │   ├── svg-sprite-builder.js      # генерация спратов svg
 │   └── start-dev.js               # автостарт локалхоста, если локальный сервер запущен 
@@ -75,7 +80,7 @@ root/
 ├── utils/
 │   └── ... (разные утилиты для проекта)
 │
-├── dev.config.js        # дев конфиг ( ЗДЕСЬ НУЖНО УКАЗАТЬ ПУТЬ К ПРОЕКТУ НА LOCALHOST !!! )
+├── .env                 # настройки для старта ( ЗДЕСЬ НУЖНО УКАЗАТЬ ПУТЬ К ПРОЕКТУ НА LOCALHOST !!! )
 ├── .gitignore           # файл исключений для гит-хаб
 ├── jsconfig.json        # нужен для VS-Code, для корректной обработки путей при дополнении
 ├── README.md            # полезный файл с информацией
@@ -123,7 +128,7 @@ Tailwind автоматически компилирует CSS при измен
 в файле wp-config.php добавите константу WP_ENV с флагом production и Vite собирает всё в assets/dist с manifest.json для WordPress.
 
 ```php
-define( 'WP_ENV', 'production' );
+define( 'WP_ENV', 'prod' );
 ```
 
 Сборка для продакшена:
@@ -165,7 +170,11 @@ import / export
 Пишите JS в main.js или создавайте свои компоненты в components/.
 Добавляйте SVG иконки в assets/src/icons/collection, затем генерируйте спрайт через npm run sprite.
 
-## === SVG SPRITE BUILDER ============================================
+
+
+## ===============================================================
+## === SVG SPRITE BUILDER ========================================
+## ===============================================================
 
 Этот скрипт автоматически собирает все SVG-иконки из папки `icons/collection` в **один спрайт** и создаёт примерную HTML-страницу для просмотра.
 
@@ -241,8 +250,9 @@ include_once get_template_directory() . '/utils/svg.php';
 ```
 
 
-
+## ===============================================================
 ## ===  FONTS BUILDER ============================================
+## ===============================================================
 
 Этот скрипт позволяет автоматически конвертировать шрифты и генерировать SCSS-файл для подключения шрифтов в проекте.  
 Он работает **без Gulp**, только через Node и npm.
@@ -282,11 +292,14 @@ include_once get_template_directory() . '/utils/svg.php';
 npm run fonts
 ```
 
+
+## ==============================================================
 ## ===  POTS BUILDER ============================================
+## ==============================================================
 
 Для того чтобы данный скрипт отработал у вас должен быть глобально установлен WP-CLI !!! 
 
-## Подробнее -> .dev-scripts/README-POTS.md
+## Подробнее -> .builder-scripts/README-POT.md
 
 В терминале:
 
@@ -301,3 +314,69 @@ PO → languages/ru_RU.po и languages/en_US.po
 MO → languages/ru_RU.mo и languages/en_US.mo
 
 создает корректные шаблоны файлов готовые для взаимодействия с плагинами для переводов на разные языки (RU/EN).
+
+
+
+## ===============================================================
+## ===  FAVICONS & PWA ICONS BUILDER =============================
+## ===============================================================
+
+Этот скрипт автоматически генерирует все нужные фавиконки для WordPress, iOS, Android и PWA из одного SVG или PNG.
+
+---
+
+##  Структура папок
+
+```
+assets/src/favicons/
+├─ source/                        # ← сюда кладём исходный SVG/PNG
+├─ favicon-16x16.png
+├─ favicon-32x32.png
+├─ apple-touch-icon.png
+├─ android-chrome-192x192.png
+├─ android-chrome-512x512.png
+├─ favicon.ico
+└─ site.webmanifest
+ ```
+---
+
+## Как пользоваться
+
+1. Помести исходник в папку `assets/src/favicons/source`:
+
+assets/src/favicons/source/logo.svg
+> Можно использовать PNG, размер ≥1024x1024. SVG предпочтительнее.
+
+2. Запусти скрипт генерации:
+
+```bash
+npm run favicons
+```
+
+Скрипт автоматически создаст все размеры PNG, favicon.ico и site.webmanifest в папке assets/src/favicons.
+
+3. Подключи файлы в теме WordPress (header.php):
+
+```html
+<link rel="icon" href="<?php echo get_template_directory_uri(); ?>/assets/src/favicons/favicon.ico">
+<link rel="apple-touch-icon" sizes="180x180" href="<?php echo get_template_directory_uri(); ?>/assets/src/favicons/apple-touch-icon.png">
+<link rel="manifest" href="<?php echo get_template_directory_uri(); ?>/assets/src/favicons/site.webmanifest">
+```
+
+
+Генерирует все иконки из одного исходника
+Оптимизация PNG без потери качества
+Готово для WordPress и PWA
+Можно расширять под свои нужды
+
+
+## Зависимости
+
+```bash
+npm install sharp fs-extra png-to-ico
+```
+
+sharp — для конвертации SVG/PNG в PNG и ICO
+fs-extra — удобная работа с папками
+png-to-ico — для генерации favicon.ico
+

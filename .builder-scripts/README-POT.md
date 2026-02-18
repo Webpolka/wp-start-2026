@@ -116,7 +116,7 @@ wp --info
 
 ## 8. Скрипт генерации POT / PO / MO
 
-Создай файл .dev-scripts/pot-builder.js:
+Создай файл .builder-scripts/pot-builder.js:
 
 ```js
 import fs from 'fs';
@@ -175,7 +175,7 @@ console.log('Все переводы готовы!');
 
 ```json
 "scripts": {
-  "pot": "node .dev-scripts/pot-builder.js"
+  "pot": "node .builder-scripts/pot-builder.js"
 }
 ```
 
